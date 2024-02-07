@@ -863,7 +863,7 @@ public class Main {
     Person 3 - Name: Rijoan, Age: 25
 
 
-## Chapter 1 - Inheritance
+## Chapter 10 - Inheritance
 Inheritance is used to borrow prperties & methods from an existing class.
 
     Phone --> Smartphone 
