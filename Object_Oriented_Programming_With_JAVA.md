@@ -34,17 +34,17 @@ We can choose a name while declearing a java variable if the following rulls are
 ### Primitive Data Types :
 Java i statically typed language. Variables must be decelared before use. There are 8 primitive data types supported by java.
 #### byte 
-    * Value range from -128 to 127
+    * Value range from [-2^7 to (2^7 -1)]
     * Takes 1 byte
     * Default value is zero
 
 #### short
-    * Value range from -2<sup>16</sup>/2 to 2<sup>16</sup>/2
+    * Value range from [-2^15 to (2^15 -1)]
     * Takes 2 bytes
     * Default value is 0
 
 #### int
-    * Value range from -2<sup>32</sup>/2 to 2<sup>32</sup>/2
+    * Value range from [-2^31 to (2^31 -1)]
     * Takes 2 bytes
     * Default value is 0
 
@@ -54,7 +54,7 @@ Java i statically typed language. Variables must be decelared before use. There 
     * Default value is 0.0f
 
 #### long
-    * Value range from -2<sup>64</sup>/2 to 2<sup>64</sup>/2
+    * Value range from [-2^63 to (2^63 -1)]
     * Takes 8 bytes
     * Default value is 0
 
@@ -64,7 +64,7 @@ Java i statically typed language. Variables must be decelared before use. There 
     * Default value is 0.0d
 
 #### char
-    * Value range from 0 to 65535(2<sup>16</sup>-1)
+    * Value range from [0 to (2^16 -1)]
     * Takes 2 bytes (Because it supports unicode)
     * Default value is '\u000'
 
@@ -468,4 +468,411 @@ public class ContinueStatementExample {
 Array is a collection of similar types of data.
 ```java
 int[] marks = new int[s];
+```  
+
+### Accessing Array Element :
+Array element can be accessed as followes :
+
+```java
+marks[0] = 100;
+marks[1] = 77;
 ```
+
+```java
+int[] marks;        // Declareation
+marks = new int[5]; // Memory Allocation
+``` 
+
+```java
+int[] marks = new int[5];
+// Declaration + Memory Allocation
+```
+
+
+```java
+int[] marks = {100 , 96, 80 , 71};
+// Declareation + Memory Allocation + Initilize
+```
+Array index start with 0 and goes till (n-1). Where n is the size of the array.
+
+### Array Lenght :
+```java
+int l = marks.lenght;
+```
+
+
+### Loop in Array :
+```java
+for(int i = 0; i < marks.lenght; i++){
+    System.out.println(marks[i]);
+}
+```
+
+
+### For-each loop in java :
+```java
+for(int element : marks){
+    System.out.println(element);    // will access all elelment in element variable
+}
+```
+
+
+### Multidimensional 2D Arrays :
+```java
+int[][] flats = new int[2][3];
+// 2 rows and 3 columns
+```
+
+
+### Access Multidimensional Arrays :
+```java
+flats[0][0] = 10;
+flats[0][1] = 30;
+flats[1][1] = 40;
+```
+
+## Chapter 7 - Methods in Java
+```java
+dataType name(){
+    // Method body
+}
+```
+
+### Method example :
+Following method returns Sum of two numbers
+```java
+int mysum(int a, int b){
+    int c = a + b;
+    return c;
+}
+```
+### Void return type :
+When we dont want our mehtod to return anything, we use void as return type.
+
+### Static Keyword :
+Static keyword is used to associate a method of a given class with the class rather than the object. Static method in a class is shared by all objects.
+
+**Note :** In case of Arrays, The reference is passed. Some is the case for Object passing to methods.
+
+### Method Overloading :
+Two or more method can have same name but diffrent parameters. Such methods are called Overloaded methods.
+
+```java
+static void sum(int a , int b){
+    return a + b;
+}
+```
+```java
+static void sum(int a , int b , int c){
+    return a + b + c;
+}
+```
+**Note :** Method overlooding cannot be perfomed by changing the return type of methods.
+
+### Variable Arguments (Varargs) :
+A function with vararg can be created in java using following systex:
+
+```java
+static int num(int ...arr){
+    // Aailable as int [] arr;
+    int result = 0;
+    for(int a: arr){
+        result += a;
+    }
+    return result;
+}
+
+// Method calling :
+sum(4,5);       // 9
+sum(4,5,1);     // 10
+sum(4,5,6,5);   // 20
+sum();          // 0
+```
+
+### Recursion :
+A function/Method in java can call itself. Such calling of function by itself is called member
+#### Example : Factorial of a number :
+```java
+public class FactorialExample {
+
+    // Recursive method to calculate factorial
+    static int factorial(int n) {
+        // Base case: factorial of 0 is 1
+        if (n == 0) {
+            return 1;
+        } else {
+            // Recursive case: n! = n * (n-1)!
+            return n * factorial(n - 1);
+        }
+    }
+
+    public static void main(String[] args) {
+        // Example: Calculate factorial of 5
+        int number = 5;
+        int result = factorial(number);
+
+        System.out.println("Factorial of " + number + " is: " + result);
+    }
+}
+```
+
+
+## Chapter 8 - Introduction to OOPs
+Object Oriented Programming tries to map code instructions with real world makeing the code short and easier to understand.
+### What is Object Oriented Programming :
+Solving a problem by creating object is one of the most popular approaches in Programming. This is called Object Oriented Programming.
+
+### What is DRY?
+DRY stand for - Do not Repeat Yourself
+
+### Class :
+A class is a blueprint for creating objects.
+
+### Object :
+An Object is an intantintion of a class. when a class is defined, a template(infu) is defined. Memory is allocated only after object instantiation.
+
+### How to model a problem in OOPs :
+**We identify the following :**
+
+    Noun     --> Class      --> Employee
+    Ajective --> Attribute  --> Name , Age , Salary etc.
+    Verb     --> Methods    --> getSalary() , increment() etc.
+
+### OOPs Terminology :
+#### 1. Abstraction :
+Hiding internal details [show only essential infu!]
+
+    Example : Phone
+    use this phone without bothering about how it was made.
+
+#### 2. Encapsulation :
+The aact of putting various components together (in a capsule).
+
+    Example :
+    Laptop is a single entity with wifi + speaker + storage etc in a single box!
+In java , encapsulation simply means that the sensitive data can be hidden from the users.
+
+#### 3. Inheritance :
+The act of deriving new things from existing things.
+
+    Example :
+    Rickshaw    ==>     E-Rickshaw
+    Phone       ==>     Smart Phone
+
+#### 4. Polymorphism :
+One entity many forms
+
+    Example :
+    Smartphone have many entity like : Phone , Calculator , Music Player , Camara etc.
+
+
+```java
+public class Person {   // Person is the name of our class
+
+    // Fields or attributes
+    String name;    // Attribute name
+    int age;        // Attribute age
+```
+
+Array in real world object = Properties + Behaier
+Object in OOPs             = Attribute  + Methods
+
+### A class with Methods :
+We can add methods to our class Employee as follows :
+```java
+public class Employee {
+
+    // Fields or attributes
+    private String name;
+    private double salary;
+
+    // Method to get the salary of the employee
+    public double getSalary() {
+        return salary;
+    }
+
+    // Method to get details of the employee
+    public String getDetails() {
+        return "Name: " + name + "\nSalary: $" + salary;
+    }
+}
+
+```
+
+## Chapter 9 - Access Modifires & Constructors :
+### Access Modifire :
+Specify where a proprety/method is accessible . 
+There are four types of access modifiers in java :
+* Private
+* Defalut
+* Protected
+* Public
+
+### Getters and Setters :
+    Gretter --> Returns the value 
+    Setter  --> Sets/Updates the value
+
+#### Example :
+
+```java
+public class Person {
+    // Private fields
+    private String name;
+    private int age;
+
+    // Getter method for 'name'
+    public String getName() {
+        return name;
+    }
+
+    // Setter method for 'name'
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Getter method for 'age'
+    public int getAge() {
+        return age;
+    }
+
+    // Setter method for 'age'
+    public void setAge(int age) {
+        // You can add validation logic here if needed
+        this.age = age;
+    }
+
+    // Other methods, constructors, etc., can be added as needed
+}
+```
+
+
+### Constructors in java :
+A member function used to initialize an object while creating it. It have no return type and the constructor function name must have the class name.
+```java
+public class Person {
+    // Private fields
+    private String name;
+    private int age;
+
+    // Constructor
+    public Person(String name, int age) { // This is perameterize constructor
+        // Set initial values during object creation
+        this.name = name;
+        this.age = age;
+    }
+
+    // Getter method for 'name'
+    public String getName() {
+        return name;
+    }
+
+    // Setter method for 'name'
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Getter method for 'age'
+    public int getAge() {
+        return age;
+    }
+
+    // Setter method for 'age'
+    public void setAge(int age) {
+        // You can add validation logic here if needed
+        this.age = age;
+    }
+
+    // Other methods can be added as needed
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an instance of the Person class using the constructor
+        Person person1 = new Person("Reyad", 30);
+
+        // Display information using getter methods
+        System.out.println("Person 1 - Name: " + person1.getName() + ", Age: " + person1.getAge());
+
+        // Create another instance of the Person class using the constructor
+        Person person2 = new Person("Rijoan", 22);
+
+        // Display information using getter methods
+        System.out.println("Person 2 - Name: " + person2.getName() + ", Age: " + person2.getAge());
+    }
+}
+```
+#### Output :
+    Person 1 - Name: Reyad, Age: 30
+    Person 2 - Name: Rijoan, Age: 22
+
+
+
+### Constructor Overloading :
+As like method overloading.
+```java
+public class Person {
+    // Private fields
+    private String name;
+    private int age;
+
+    // Default constructor with no parameters
+    public Person() {
+        this.name = "Unknown";
+        this.age = 0;
+    }
+
+    // Constructor with only name parameter
+    public Person(String name) {
+        this.name = name;
+        this.age = 0; // Default age
+    }
+
+    // Constructor with both name and age parameters
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Getter methods and other methods can be added as needed
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create instances using different constructors
+        Person person1 = new Person();
+        Person person2 = new Person("Reyad");
+        Person person3 = new Person("Rijoan", 25);
+
+        // Display information using getter methods
+        System.out.println("Person 1 - Name: " + person1.getName() + ", Age: " + person1.getAge());
+        System.out.println("Person 2 - Name: " + person2.getName() + ", Age: " + person2.getAge());
+        System.out.println("Person 3 - Name: " + person3.getName() + ", Age: " + person3.getAge());
+    }
+}
+```
+#### Output :
+    Person 1 - Name: Unknown, Age: 0
+    Person 2 - Name: Reyad, Age: 0
+    Person 3 - Name: Rijoan, Age: 25
+
+
+## Chapter 1 - Inheritance
+Inheritance is used to borrow prperties & methods from an existing class.
+
+    Phone --> Smartphone 
+    Super Class --> SubClass
+
+### Declaring Inheritance in Java :
+
+```java
+
+```
+
+
