@@ -870,9 +870,311 @@ Inheritance is used to borrow prperties & methods from an existing class.
     Super Class --> SubClass
 
 ### Declaring Inheritance in Java :
+Inheritance in Java is declared using **extends** keyword.
+
+    Superclass --> Subclass
+
+When a class inherits from a superclass , it inherits parts of superclass methods and fields. Java doesnt support multiple inheritance and two class cannot b super classes  for a subclass.
+```java
+// Parent class (superclass)
+class Animal {
+    String name;
+
+    public Animal(String name) {
+        this.name = name;
+    }
+
+    public void eat() {
+        System.out.println(name + " is eating.");
+    }
+
+    public void sleep() {
+        System.out.println(name + " is sleeping.");
+    }
+}
+
+// Child class (subclass) inheriting from Animal
+class Dog extends Animal {
+    public Dog(String name) {
+        // Calling the constructor of the superclass (Animal)
+        super(name);
+    }
+
+    // Additional method specific to Dog
+    public void bark() {
+        System.out.println(name + " is barking.");
+    }
+}
+
+// Main class to demonstrate inheritance
+public class InheritanceExample {
+    public static void main(String[] args) {
+        // Creating an instance of the Dog class
+        Dog myDog = new Dog("Tom");
+
+        // Calling methods from both the superclass (Animal) and the subclass (Dog)
+        myDog.eat();
+        myDog.sleep();
+        myDog.bark();
+    }
+}
+```
+**Output :**
+
+    Tom is eating.
+    Tom is sleeping.
+    Tom is barking.
+
+
+### Constructors in Inharitance :
+When a Derived class is extended form the Base class, the constructor of a Base class s executed first flollowd by the constructor of derived class.
+For the followowing inheritance hirarchy , the constroctors are executed in order [Parent --> Chiled --> GrandChild]
+
+
+### Constructor during Constructor Overloading :
+When there are multiple constructors in the parent class, the constructr withut any without any parameters is called from the child class.
+If we want to called constructor with parameters form the parent class , we can use Super Keyword.
+
+### this keyword :
+this keywor is a way for us to reference an object of the class which is being created/referenced.
 
 ```java
+public class Person {
+    // Instance variables
+    String name;
+    int age;
 
+    // Parameterized constructor
+    public Person(String name, int age) {
+        // Use 'this' to differentiate between instance variable and parameter with the same name
+        this.name = name;
+        this.age = age;
+    }
+
+    // Method to display information about the person
+    public void displayInfo() {
+        // Use 'this' to refer to instance variables within the method
+        System.out.println("Name: " + this.name);
+        System.out.println("Age: " + this.age);
+    }
+
+    public static void main(String[] args) {
+        // Creating an object of the Person class
+        Person person1 = new Person("John", 25);
+
+        // Calling the displayInfo method using 'this'
+        person1.displayInfo();
+    }
+}
 ```
+
+### super keyword :
+A reference variable used to refer immediate parent class object
+* Can be used to refer immediate parent class instance variable.
+* Can be used to invoke parent class mehtods.
+* Can be used to invoke parent class Constructors.
+
+
+```java
+class Animal {
+    String sound = "Animal Sound";
+
+    // Constructor of the Animal class
+    public Animal() {
+        System.out.println("Animal constructor");
+    }
+
+    // Method of the Animal class
+    public void makeSound() {
+        System.out.println("Animal makes a sound: " + sound);
+    }
+}
+
+class Dog extends Animal {
+    String sound = "Bark";
+
+    // Constructor of the Dog class
+    public Dog() {
+        // Using 'super' to call the constructor of the immediate parent class (Animal)
+        super();
+        System.out.println("Dog constructor");
+    }
+
+    // Method of the Dog class
+    public void makeSound() {
+        // Using 'super' to call the makeSound method of the immediate parent class (Animal)
+        super.makeSound();
+        System.out.println("Dog barks: " + sound);
+    }
+
+    // Method specific to Dog class
+    public void wagTail() {
+        System.out.println("Dog wags its tail");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating an object of the Dog class
+        Dog myDog = new Dog();
+
+        // Calling the makeSound method of the Dog class
+        myDog.makeSound();
+
+        // Calling the wagTail method of the Dog class
+        myDog.wagTail();
+    }
+}
+```
+
+### Method Overloading :
+If the child implements the same method parent in the class again , it is known as method overloading.
+
+```java
+public class MathOperations {
+    // Method to add two integers
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    // Method to add three integers
+    public int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    // Method to add two doubles
+    public double add(double a, double b) {
+        return a + b;
+    }
+
+    // Method to concatenate two strings
+    public String add(String str1, String str2) {
+        return str1 + str2;
+    }
+
+    public static void main(String[] args) {
+        // Creating an object of MathOperations class
+        MathOperations mathOps = new MathOperations();
+
+        // Testing the add methods with different parameters
+        int result1 = mathOps.add(5, 10);
+        System.out.println("Result of adding two integers: " + result1);
+
+        int result2 = mathOps.add(5, 10, 15);
+        System.out.println("Result of adding three integers: " + result2);
+
+        double result3 = mathOps.add(2.5, 3.5);
+        System.out.println("Result of adding two doubles: " + result3);
+
+        String result4 = mathOps.add("Rijoan ", "Maruf");
+        System.out.println("Result of concatenating two strings: " + result4);
+    }
+}
+```
+**Output :**
+
+    Result of adding two integers: 15
+    Result of adding three integers: 30
+    Result of adding two doubles: 6.0
+    Result of concatenating two strings: Rijoan Maruf
+
+
+## Chapter 11 - Abstract Classes & Interaces
+### What dose Abstruct(class) mean ?
+Abstract in english means -> Existing in thought or as an idea with concreate existance.
+
+### Abstract Method :
+A method that is declared ithout an implementtation.
+```java
+abstract void moveTo(double x , double y);
+```
+
+### Abstract Clsss :
+If a class includes abstract methods, then the class itself must be declared abstract , as in :
+```java
+public abstract class PhoneModel{
+    abstract void swithOf();
+    // More codd ....
+}
+```
+When an abstract class is subclassed, the subclass usually provides implementations for all the methods in parent class. If is doesnt , it must be decleard abstact.
+
+**Example :**
+
+shape --> circle , rectangle , Rombos etc.
+
+**Note :**
+
+* It is possible to create reference of an abstract class.
+* It is possible to create an object of an abstract class. 
+
+We can also assign reference of an abstrt class t object of a concrete subclass.
+
+```java
+// Abstract class
+abstract class Shape {
+    // Abstract method (no method body)
+    abstract double area();
+
+    // Concrete method
+    void display() {
+        System.out.println("This is a shape.");
+    }
+}
+
+// Concrete subclass of Shape
+class Circle extends Shape {
+    double radius;
+
+    // Constructor
+    Circle(double radius) {
+        this.radius = radius;
+    }
+
+    // Implementation of abstract method
+    @Override
+    double area() {
+        return Math.PI * radius * radius;
+    }
+}
+
+// Concrete subclass of Shape
+class Rectangle extends Shape {
+    double length;
+    double width;
+
+    // Constructor
+    Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    // Implementation of abstract method
+    @Override
+    double area() {
+        return length * width;
+    }
+}
+
+public class AbstractExample {
+    public static void main(String[] args) {
+        // Cannot instantiate an abstract class
+        // Shape shape = new Shape(); // This will result in a compilation error
+
+        // Creating objects of concrete subclasses
+        Circle circle = new Circle(5);
+        Rectangle rectangle = new Rectangle(4, 6);
+
+        // Calling methods
+        circle.display();
+        System.out.println("Circle Area: " + circle.area());
+
+        rectangle.display();
+        System.out.println("Rectangle Area: " + rectangle.area());
+    }
+}
+```
+
+### Interfaces in Java :
 
 
