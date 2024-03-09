@@ -247,6 +247,289 @@ userLabel.setBackground(Color.YELLOW)
 ```
 
 
+**setToolTipText :**
+```java
+myLabel.setToolTipText("Hi");
+```
+
+**getToolTipText :**
+```java
+String s1 = myLabel.getToolTipText("Hi");
+// Import ToolTipText and assigned into S1
+```
+
+**getText :**
+Import text from JLabel.
+```java
+String s2 = userLabel.getText();
+// Import text from userLabel and assigned in s2
+```
+
+
+**ImageIcon() :**
+```java
+import javax.swing.*;
+import java.awt.*;
+
+public class SwingImageExample extends JFrame {
+    public SwingImageExample() {
+        // Set the title of the JFrame
+        setTitle("Java Swing Image Example");
+
+        // Create a JLabel to hold the image
+        JLabel label = new JLabel();
+
+        // Load the image from file (adjust the path accordingly)
+        ImageIcon icon = new ImageIcon("path/to/your/image.jpg");
+
+        // Set the icon on the JLabel
+        label.setIcon(icon);
+
+        // Add the JLabel to the JFrame
+        add(label);
+
+        // Set the layout manager to BorderLayout (or any other layout manager you prefer)
+        setLayout(new BorderLayout());
+
+        // Set default close operation and size
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 300);
+        setLocationRelativeTo(null); // Center the JFrame on the screen
+
+        // Make the JFrame visible
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        // Run the GUI code on the Event Dispatch Thread (EDT)
+        SwingUtilities.invokeLater(() -> new SwingImageExample());
+    }
+}
+```
+
+### JTextField() :
+```java
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import java.awt.*;
+
+// Frame class extending JFrame for creating a GUI window
+public class Frame extends JFrame{
+   private JLabel myLabel;
+   private Container c;
+   private JTextField firstName, lastName;
+
+   // Constructor for the Frame class
+   Frame(){
+      initializeComponent();
+   }
+
+   // Method to initialize and set up the components of the GUI
+   public void initializeComponent(){
+      // Get the content pane of the JFrame
+      c = this.getContentPane();
+      // Set layout to null for absolute positioning
+      c.setLayout(null);
+      // Set background color to gray
+      c.setBackground(java.awt.Color.GRAY);
+
+      // Create and set up the first name text field
+      firstName = new JTextField();
+      firstName.setBounds(20, 30, 200, 50);
+
+      // Create and set up the last name text field with default value
+      lastName = new JTextField("Md Rijoan Maruf");
+      lastName.setBounds(20, 100, 200, 50);
+
+      // Add text fields to the content pane
+      c.add(firstName);
+      c.add(lastName);
+   }
+
+   // Main method to test the Frame class
+   public static void main(String[] args) {
+      // Create an instance of the Frame class
+      Frame f1 = new Frame();
+      // Set default close operation, size, visibility, and title of the window
+      f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      f1.setBounds(100, 50, 500, 500);
+      f1.setVisible(true);
+      f1.setTitle("Text Field Example");
+   }
+}
+```
+
+**Font set in the JTextField :**
+```java
+JTextField firstName = new JTextField();
+Font myFont = new Font("Arial" , Font.BOLD , 20);
+Font myFont2 = new Font("Arial" , Font.BOLD + Font.ITALIC, 20); // Italic + Bold
+firstName.setFont(myFont);
+```
+
+**setForeground() , setBackground() in JTextField :**
+```java
+JTextField firstName = new JTextField();
+firstName.setForeground(java.awt.Color.RED);    // Set font color RED
+firstName.setBackground(java.awt.Color.YELLOW); // Set textField Background Color YELLOW
+```
+
+**JTextField alignment :**
+```java
+JTextFiled firstName = new JTextField();
+firstName.setHorizontalAlignment(JTextField.RIGHT); 
+// Input recived in the text field
+```
+
+**JTextField Action Listener :**
+
+```java
+JTextField firstName = new JTextField();
+JTextField lastName = new JTextFirld();
+
+firstName.addActionListener(new ActionListener() { // Create new action listner for firstname JTextField
+    public void actionPerformed(ActionEvent e){  // Create action permord function
+    String s1 = firstName.getText();
+
+    // Action
+    if (s1.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "You Didn't Enter anything.");
+    }
+    else{
+        JOptionPane.showMessageDialog(null, "Your First Name : " + s1);
+    }
+    }
+});
+
+lastName.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent f){
+    String s2 = lastName.getText();
+    if(s2.isEmpty()){
+        JOptionPane.showMessageDialog(null , "You Didn't Enter anything!");
+    }
+
+    else{
+        JOptionPane.showMessageDialog(null, "Your Last Name :" + s2);
+    }
+    }
+
+});
+```
+
+
+**JPasswordField() :**
+
+```java
+JPasswordField pass1 = new JPasswordField();
+```
+
+We can change password show type :
+
+```java
+JPasswordField pass1 = new JPasswordField();
+pass1.setEchoChar('#'); // change password showtype to #
+```
+
+
+**JButton() :**
+As like JPasswordField and JTextField.
+```java
+JButton btn1 = new JButton("Submit");
+```
+
+
+
+### Create cursor :
+```java
+JButton btn1 = new JButton("Submit");
+Cursor cursor1 = new Cursor(Cursor.HAND_CURSOR);
+btn1.setCoursor(coursor1);
+```
+
+**Set Imaage on JButton :**
+```java
+ImageIcon img1 = new ImageIcon(getClass().getResource("login.jpg"));
+JButton btn1 = new JButton(img1);
+```
+
+**JButton Action Listener :**
+```java
+// Button Action Listner
+btn.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e){
+        tf.setText("");
+    }
+});
+```
+**Output** : When we click clear button the text field text replace with "" . Thant means the text field will be clear.
+
+
+**Example Full Code :**
+```java
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+public class Fram2 extends JFrame{
+    // Declearing variable 
+    private Container c;
+    private JTextField tf;
+    private JButton btn;
+
+    // Default Constructor
+    Fram2(){
+        // Call a Method
+        initializeComponent();
+    }
+
+    // Method
+    public void initializeComponent(){
+        // Creating Container
+        c = this.getContentPane();
+        c.setLayout(null);
+        c.setBackground(Color.YELLOW);
+
+        // Creating text field & add into the container
+        tf = new JTextField();
+        tf.setBounds(20 , 20 , 300, 30);
+        c.add(tf);
+
+        // Creating button & add into the container
+        btn = new JButton("Clear");
+        btn.setBounds(20,70,100,30);
+        c.add(btn);
+
+        // Button Action Listner
+        btn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                tf.setText("");
+            }
+        });
+        // Output : When we click clear button the text field text replace with "" . Thant means the text field will be clear.
+    }
+
+    public static void main(String[] args) {
+        // Creating Fram2 Object
+        Fram2 newFrame = new Fram2();
+
+        // Create a basic frame
+        newFrame.setVisible(true);
+        newFrame.setDefaultCloseOperation(Fram2.EXIT_ON_CLOSE);
+        newFrame.setBounds(50 , 50 , 500 , 500);
+        newFrame.setTitle("JButton Action Listner");
+    }
+}
+```
+
+
+
 
 ```java
 
@@ -254,11 +537,6 @@ userLabel.setBackground(Color.YELLOW)
 
 
 
-```java
-
-```
-
-
 
 ```java
 
@@ -266,8 +544,206 @@ userLabel.setBackground(Color.YELLOW)
 
 
 
+
 ```java
 
 ```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
+
+
+
+```java
+
+```
+
 
 
