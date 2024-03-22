@@ -1084,7 +1084,7 @@ public class MathOperations {
 Abstract in english means -> Existing in thought or as an idea with concreate existance.
 
 ### Abstract Method :
-A method that is declared ithout an implementtation.
+A method that is declared without an implementtation.
 ```java
 abstract void moveTo(double x , double y);
 ```
@@ -1112,7 +1112,9 @@ We can also assign reference of an abstrt class t object of a concrete subclass.
 
 ```java
 // Abstract class
+
 abstract class Shape {
+    // Shape is the standard.
     // Abstract method (no method body)
     abstract double area();
 
@@ -1176,5 +1178,259 @@ public class AbstractExample {
 ```
 
 ### Interfaces in Java :
+In java interface is the group of releted medthods with emply bodies.
+```java
+package com.learinig;
+interface Bycicle{
+    int x = 100;
+    // This x is final. It can't be changed.
+    void speedUp();
+    void speedDown();
+}
+
+class DuruntoCycle implements Bycicle{
+    // Have to apply all method of interface
+    public void speedUp(){
+        System.out.println("Speeding Up");
+    }
+
+    public void speedDown(){
+        System.out.println("Speed Down");
+    }
+}
+public class InterfaceDemo {
+    public static void main(String[] args) {
+        DuruntoCycle c1 = new DuruntoCycle();
+        System.out.println(c1.x); // we can access interface attribute but can't modify
+
+        c1.speedDown();
+        c1.speedDown();
+    }
+}
+```
+
+### Abstract class vs interface :
+We can't extends multiple abstruct classes but we can implimants multiple interfaces at a time.
+Interfaces made for dynamic method dispatch and run time polymourphism.
+
+**Multiple interface Example :**
+```java
+package com.learinig;
+interface Bycicle{
+    int x = 100;
+    // This x is final. It can't be changed.
+    void speedUp();
+    void speedDown();
+}
+
+interface ApplyProperties{
+    void applyBreak();
+    void blowHorn();
+}
+
+class DuruntoCycle implements Bycicle , ApplyProperties{
+    // Have to apply all method of interface
+    @Override
+    public void speedUp(){
+        System.out.println("Speeding Up");
+    }
+
+    @Override
+    public void speedDown(){
+        System.out.println("Speed Down");
+    }
+
+    @Override
+    public void applyBreak(){
+        System.out.println("Break Apply");
+    }
+
+    @Override
+    public void blowHorn() {
+        System.out.println("Blow Horn");
+    }
+}
+public class InterfaceDemo {
+    public static void main(String[] args) {
+        DuruntoCycle c1 = new DuruntoCycle();
+        System.out.println(c1.x); // we can access interface attribute but can't modify
+
+        c1.speedDown();
+        c1.speedDown();
+        c1.applyBreak();
+        c1.blowHorn();
+    }
+}
+```
+
+**Multiple inharitance not allowed in java :**
+Java does not support multiple inharitance directly but the similer concept can be achived using interface.
+
+A class can implimants multiple interfaces and extend a class in a same time.
+
+1. Interface in java is a bit like the class with a significant difference.
+2. A interface can only have method signeture , fields(constant) and default methods.
+3. You can create reference of an interface not object.
+4. Interface methods public by default.
+5. The class interface need to define methods not nacessary attribute/fileds and you can overwrite interface attribute while implimantations.
+
+**Example :**
+```java
+package com.learinig;
+
+// Interface with default methods
+interface GPS{
+    default void gpsAccess(){
+        System.out.println("Have GPS Access.");
+    }
+}
+interface Wifi{
+    void availableNetwork();
+}
+interface Camara{
+    void takePhoto();
+    void makeVideo();
+}
+
+class Phone{
+    void makeCall(){
+        System.out.println("Making call");
+    }
+    void takeCall(){
+        System.out.println("Taking call");
+    }
+}
+
+// Implements multiple interface and a inheritance
+class MySmartPhone extends Phone implements Camara,Wifi,GPS{
+    @java.lang.Override
+    public void availableNetwork() {
+        System.out.println("Showing Available networks.");
+    }
+
+    // Overwrite default methods
+    @java.lang.Override
+    public void gpsAccess() {
+        System.out.println("GPS Accessed.");
+    }
+
+    @java.lang.Override
+    public void makeVideo() {
+        System.out.println("Start Making Video");
+    }
+
+    @java.lang.Override
+    public void takePhoto() {
+        System.out.println("Taking Photo");
+    }
+}
+public class InterfaceInharitanceDemo {
+    public static void main(String[] args) {
+        MySmartPhone phone1 = new MySmartPhone();
+
+        phone1.availableNetwork();
+        phone1.gpsAccess();
+        phone1.makeVideo();
+        phone1.makeCall();
+        phone1.takePhoto();
+        phone1.takeCall();
+    }
+}
+```
+
+### Inharitance in interface :
+We can extends interface to another as like class
+```java
+package com.learinig;
+interface Parent_Interface{
+    void math1();
+    void math2();
+}
+interface Child_Interface extends Parent_Interface{ // inherit math1 & math2
+    void math3();
+    void math4();
+}
+public class InheritanceInInterface {
+    public static void main(String[] args) {
+        
+    }
+}
+```
+
+### Polymorphism using interface :
+
+```java
+// Interface
+interface Animal {
+    void sound();
+}
+
+// Dog class implementing the Animal interface
+class Dog implements Animal {
+    @Override
+    public void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+// Cat class implementing the Animal interface
+class Cat implements Animal {
+    @Override
+    public void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        Animal animal1 = new Dog(); // Polymorphism: animal1 can refer to any object implementing Animal interface
+        Animal animal2 = new Cat(); // Polymorphism: animal2 can refer to any object implementing Animal interface
+        
+        animal1.sound(); // Calls Dog's implementation of sound() method
+        animal2.sound(); // Calls Cat's implementation of sound() method
+    }
+}
+```
+
+## Chapter 12 - Packages
+### Interpreter vs Compailer :
+**Interpreater :** Translate one statement at a time into Machine code.
+* One statement at a time.
+* Is needed everytime.
+* Easy for programers.
+
+**Compailer :** Scans entire program and translate whole of it into machine code.
+* Entire program at a time.
+* Once compiled it is not needed.
+* Not execution if an error occurs.
+* Usually not as easy at interpreatd once.
+
+### Is java Complide or Interpreated ?
+* Java is a Hybrid langulage.
+* It is Compailed as well as Interpreated language.
+
+**Java File --> Class File(Byte Code) --> Now can be used by java Interpreater**
+
+* A JVM is used to interpreated this byte code.
+* This byte code can be taken to any platform(Mac, Linux , Windows etc).
+* Hence java is platform independent (Write ones and use everywere).
+
+### Pakage in Java :
+A Package is used to group releted class.
+* Build in Packages(Java API)
+* User Defined Packages(Custom Packages)
+
+### Creating Packages in Java :
+
+
+
+
+
+
+
+
+
+
 
 
