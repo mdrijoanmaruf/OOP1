@@ -528,84 +528,85 @@ public class Fram2 extends JFrame{
 }
 ```
 
+**JTextArea() :**
+Used to multiline input.
+```java
+JTextArea t1 = new JTextArea();
+```
 
+**JTextArea() set line wrapping :**
+```java
+t1.setLineWrap(true);
+```
 
+**JTextArea() set line wrapping by word:**
 
 ```java
-
+t1.setWrapStyleWord(true);
 ```
 
 
 
+**Add ScrollPane in JTextArea :**
+When we use JScrollPane we defined insert text area into scroll pane. and add scroll pane into container. And we add setBounds() into the scrollpane not JtextArea();
+```java
+JScrollPane scroll1 = new JScrollPane(ta1);
+scroll1.setBounds(10, 10, 200, 200);
+c.add(scroll1);
+```
+Some extra method for JScorllPane():
 
 ```java
+scroll1 = new JScrollPane(ta1, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+// We can also use some other components
+```
 
+### JRadioButton() :
+```java
+JRadioButton male = new JRadioButton("Male");
+JRadioButton female = new JRadioButton("Female");
+```
+
+### ButtonGroup() :
+We can create a group for button. For example we create group1 and add male and female in this group. So, now we can't select male and femele in same time.
+```java
+ButtonGroup group1 = new ButtonGroup();
+group1.add(male);
+group1.add(female);
+```
+
+**Set Default Selected :**
+```java
+male.setSelected(true);
+// Now Initially Male will selected
+```
+Another Way
+```java
+JRadioButton male = new JRadioButton("Male" ,true);
+```
+
+**Disable a RadioButton :**
+```java
+female.setEnable(false);
+```
+
+### Radio Button ActionListener :
+```java
+male.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (male.isSelected()){
+            System.out.println("You Have selected Male");
+        }
+    }
 ```
 
 
-
-
+### JCheckBox() :
 ```java
-
+JCheckBox javaChackBox = new JCheckBox("Java");
+JCheckBox CppChekBox = new JCheckBox("C++");
 ```
-
-
-
-
-```java
-
-```
-
-
-
-
-```java
-
-```
-
-
-
-
-```java
-
-```
-
-
-
-
-```java
-
-```
-
-
-
-
-```java
-
-```
-
-
-
-
-```java
-
-```
-
-
-
-
-```java
-
-```
-
-
-
-
-```java
-
-```
-
-
 
 
 ```java

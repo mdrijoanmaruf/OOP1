@@ -1422,8 +1422,148 @@ A Package is used to group releted class.
 * User Defined Packages(Custom Packages)
 
 ### Creating Packages in Java :
+* javac Rijoan.java : Compile Rijoan.java & Create Rijoan.class
+
+* javac * .java : Compile all java file in this folder and create .class file for all
+
+* javac -d . Rioan.java : Create a package folder and the class file will store there.
+
+### Access Modifires in Java :
+
+| **Modifire**  | **Class** | **Package** | **SubClass** | **World** |
+| ------------- | ----------- | ----------- | ----------- | -----------|
+| **Public**  | Yes | Yes | Yes | Yes |
+| **Protected**  | Yes | Yes | Yes | No |
+| **Default**  | Yes | Yes | No | No |
+| **Private**  | Yes | No | No | No |
 
 
+## Chapter 14 - Errors & Exceptions :
+There are 3 type of errors in java :
+* Syntex Error
+* Logical Error
+* RunTime Error --> Aslo called Exceptions
+
+### Exceptions Handaling :
+Exceptions is an event that occurs when a program is executed disripting to normal flow of instructions. There are mainly 2 types of exception in java.
+
+1. Checked Exception --> Compaile time exception(Handled by compailer)
+2. Unchecked Exception --> Runtime Exception
+
+### Commonly occuring Exceptions :
+* NullPointerExceptions
+```java
+System.out.println(name.charAt(0)); // NullPointer Exception
+```
+* ArithmeticExceptions
+```java
+int x = 10;
+int y = 0;
+int result x/y; // ArithmeticException
+```
+
+* ArrayIndexOutOfBoundsExceptions
+```java
+String name = "Rijoan"
+System.out.println(name.charAt(10)); // StringIndexOutOfBoundsException
+```
+
+* NumberFormatExceptions
+```java
+int number = Integer.parseInt("Rijoan");    //NumberFormatException
+```
+
+* FileNotFoundException
+```java
+File file = new File("D://Rijoan.txt"); // FileNotFoundException
+```
+* IlligalArgumentExceptions
+* ClassNotFoundException : If class not found 
+* IOException : Input Output Excepiton
+* NoSuchMethodExceptin : Method not found
+
+### Exception handling is managed by 5 keywords :
+
+1. try
+2. catch
+3. finally
+4. throw
+5. throws
+
+### Example try-catch :
+```java
+public class ExceptionHandaling {
+    public static void main(String[] args) {
+        int a = 100;
+        int b = 0;
+
+        try {
+            int c = a/b;
+            System.out.println("C = "+ c);
+        }
+        catch(Exception e){
+            System.out.println("Exception Detected : "+ e);
+        }
+    }
+}
+```
+
+### Multi catch Excaption :
+```java
+public class MultiException {
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 0;
+
+        try {
+            int result = a/b;
+        }
+        catch (ArrayIndexOutOfBoundsException e1){  // It can't catch the exception
+            System.out.println("Exception : " + e1);
+        }
+        catch (ArithmeticException e2){ // It will catch the exception
+            System.out.println("ArithmeticException is : " + e2);
+        }
+        finally { // It must be execute
+            System.out.println("End of this program.");
+        }
+    }
+}
+```
+
+### Nasted try-catch :
+```java
+public class Nested_try_catch {
+    public static void main(String[] args) {
+        int[] marks = {7, 56, 6};
+        int ind = 10; // Setting ind to 10
+
+        try {
+            System.out.println("Welcome!");
+            try {
+                System.out.println(marks[ind]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Sorry, this index does not exist.");
+                System.out.println("Nested catch is executed.");
+            }
+        } 
+        catch (Exception e) { // This catch will not execute.
+            System.out.println("Normal Exception");
+        }
+
+        System.out.println("Thanks for using this program");
+    }
+}
+```
+**Output :**
+
+    Welcome!
+    Sorry, this index does not exist.
+    Nested catch is executed.
+    Thanks for using this program
+
+
+### Exception Class in Java :
 
 
 
