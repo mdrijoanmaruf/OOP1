@@ -3,7 +3,7 @@
 **Developing a basic Java program with Inheritance, Association and Polymorphism.**
 **BookShop -- Book <-- StoryBook,TextBook**
 
-### class Bok
+### class B0ok
 **Attributes :**
 * **String isbn**
 * **String bookTitle**
